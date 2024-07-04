@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -9,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsPage implements OnInit {
   item: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,private navCtrl: NavController
+  ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -17,6 +19,10 @@ export class DetailsPage implements OnInit {
         this.item = JSON.parse(params['item']);
       }
     });
+  }
+
+  goBack() {
+    this.navCtrl.back();
   }
 
 }
